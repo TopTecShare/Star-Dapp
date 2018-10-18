@@ -1,0 +1,78 @@
+const StarNotary = artifacts.require('StarNotary')
+
+contract('StarNotary', accounts => {
+
+
+  beforeEach(async function() { 
+    this.contract = await StarNotary.new({from: accounts[0]})
+})
+  
+  
+
+  describe("Create First Star",function(){
+
+    it(" call create star ",function(){
+
+      StarNotary.deployed().then(function(instance){
+
+        return instance.createStar("s","2","2","2","r").call();
+
+
+
+      });
+
+
+       
+      });
+    });
+
+
+    describe("Stars count",function(){
+
+      it(" call getCount ",function(){
+
+
+        StarNotary.deployed().then(function(instance){
+
+          return instance.getCount().call();
+  
+  
+  
+        }).then(function(count){
+
+          assert.equal(count.toNumber(), 2, 'one star created');
+          console.log(count)
+        });
+        
+  
+  
+         });
+        });
+       
+    
+  
+  
+
+   
+});
+
+/*
+
+ 
+  it('Create First Star0', function() {
+      StarNotary.deployed().then(function(instance) {
+      inst = instance;
+        inst.createStar("f001","12","222","444","s001").then(function(){
+          return inst.tokenIdToStarInfo(0).then(function(r){star=r;
+      assert.equal(star[0],"f0201","correct");
+      })}); 
+       //inst.createStar("f001","12","222","444","s001");
+    }
+    )});
+
+    
+})
+*/
+
+
+
