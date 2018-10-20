@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Star Notary</title>
+        <script src="/js/jquery-1.9.1.js"></script>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/js/bootstrap.js"></script>
+     
+
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="text-center">Star Notary</h1>
+
+            <div class="row " >
+
+                
+              <div class="col-lg-6  "  name="Create star">
+                  <div class="form-group">
+                      <h3 class="text-left">Create new Star </h3>
+
+              
+              
+                      <div class="row">
+                        <div class="col-lg-5">
+                            <strong>Star Name: </strong>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text"  class="form-control" name="star-name" id="star-name">
+          
+                        </div>
+                         
+                          
+                      </div>
+
+                      <div class="row">
+
+                          <div class="col-lg-5">
+                              <strong>Right Ascension:</strong>
+                          </div>
+                          <div class="col-lg-7">
+                              <input type="text" class="form-control" name="ra"  id="ra">
+            
+                          </div>
+          
+                          </div>
+                      <div class="row">
+                            <div class="col-lg-5">
+                               <strong>Declination </strong>
+                              </div>
+                              <div class="col-lg-7">
+                                  <input type="text" class="form-control" name="dec" id="dec">
+                  
+                              </div>
+                  
+                              </div>
+
+                              <div class="row">
+
+          
+                                  <div class="col-lg-5">
+                                      <strong>Magnitude </strong>
+                                  </div>
+                                  <div class="col-lg-7">
+                                      <input type="text" class="form-control" name="mag" id="mag">
+                      
+                                  </div>
+                      
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <strong>Star Story: </strong>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text"  class="form-control" name="star-story" id="star-story"> 
+                        
+                                    </div>
+                                    
+                                    
+                                     
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <strong>your new star Token Id: </strong>
+                                    </div>
+                                    <div class="col-lg-7">
+            
+                                      
+            
+                                        <label id="Token-ID" class="form-control"  ></label>
+                                       
+                        
+                                    </div>
+                                    
+                                    
+                                     
+                                </div>
+
+                      
+                                <button id="create-button"  class="btn btn-primary pull-right" onclick="CreateButtonClicked()">Create Star</button>
+                    
+                    </div>
+
+              </div>
+              
+              <div class="col-lg-6"  name="Put  star for sale">
+
+                  
+                <div class="form-group">
+
+                    <h3 class="text-center">Put  star for sale </h3>
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <strong> star Token Id for sale: </strong>
+                        </div>
+                        <div class="col-lg-7">                   
+
+                            
+                            <input type="text" class="form-control" name="TokenID" id="TokenID">
+
+                           
+            
+                        </div>
+                      </div>
+
+                        <div class="row">
+                          <div class="col-lg-5">
+                              <strong> star Price  in ether: </strong>
+                          </div>
+                          <div class="col-lg-7">
+                              <input type="text" class="form-control" name="price" id="price">
+
+                          </div>
+                        </div>
+
+                        <button id="List-button"  class="btn btn-primary pull-right" onclick="PutStarForSaleButtonClicked()">Put star for sale</button>
+                  
+                
+                
+
+
+
+              </div>
+              
+            </div>
+
+            
+            
+            
+                               
+                        
+                                       
+              
+                                        
+              
+                                          
+                                          
+    
+                                         
+            
+
+
+           
+
+            
+        </div>
+        <div class="row">
+
+            <div class="col-lg-6" name="list stars for sale">
+                <div class="form-group">
+                    <h3 class="text-left">List of All stars for sale </h3>
+                    <div class="row">
+                      <table table id="Stars-for-sale" class="table table-striped table-hover  ">
+                          <thead> 
+                            <tr>
+                               <th>Star Token Id</th>
+                                <th>Star Name</th>                            
+                                <th>Star Story</th>
+                                <th>Price in ether</th>
+                                <th>Owner</th>
+  
+                              </tr>
+
+                          </thead>
+  
+  
+  
+                      </table>
+                    </div>
+
+                    <button id="star-info-button"  class="btn btn-primary pull-right" onclick="starInfo()"> star info </button>
+                    
+  
+                </div>
+
+                
+  
+  
+              </div>
+            <div class="col-lg-6" name="buy star">
+                
+                <div class="form-group">
+
+                    <h3 class="text-center">buy  a star  </h3>
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <strong> star Token Id to buy : </strong>
+                        </div>
+                        <div class="col-lg-7">                   
+
+                            
+                            <input type="text" class="form-control" name="BuyTokenID" id="BuyTokenID">
+
+                           
+            
+                        </div>
+                      </div>
+
+                        <div class="row">
+                          <div class="col-lg-5">
+                              <strong> buying amount in ether: </strong>
+                          </div>
+                          <div class="col-lg-7">
+                              <input type="text" class="form-control" name="cost" id="cost">
+
+                          </div>
+                        </div>
+
+                        <button id="Buy-button"  class="btn btn-primary pull-right" onclick="BuyStarButtonClicked()">Buy star </button>
+                  
+                
+                
+
+
+
+              </div>
+            </div>
+
+
+        </div>
+
+      </div>
+
+
+    
+
+        <script>    
+         
+        // s = s.substr(3);
+         //alert(s);
+
+
+
+
+           
+
+             if(typeof web3 != 'undefined') { 
+                web3 = new Web3(web3.currentProvider) // what Metamask injected 
+            } else {
+                // Instantiate and set Ganache as your provider
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            // The default (top) wallet account from a list of test accounts 
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+
+          
+
+            // The interface definition for your smart contract (the ABI) 
+            var StarNotary = web3.eth.contract(
+              [
+                            {
+                              "anonymous": false,
+                              "inputs": [
+                                {
+                                  "indexed": true,
+                                  "name": "owner",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "operator",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": false,
+                                  "name": "approved",
+                                  "type": "bool"
+                                }
+                              ],
+                              "name": "ApprovalForAll",
+                              "type": "event"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "approve",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "_tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "buyStar",
+                              "outputs": [],
+                              "payable": true,
+                              "stateMutability": "payable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "_Token_ID",
+                                  "type": "uint256"
+                                },
+                                {
+                                  "name": "_name",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "_Ra",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "_Dec",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "_Mag",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "_story",
+                                  "type": "string"
+                                }
+                              ],
+                              "name": "createStar",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "_tokenId",
+                                  "type": "uint256"
+                                },
+                                {
+                                  "name": "_price",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "putStarUpForSale",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "from",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "safeTransferFrom",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "from",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                },
+                                {
+                                  "name": "_data",
+                                  "type": "bytes"
+                                }
+                              ],
+                              "name": "safeTransferFrom",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "anonymous": false,
+                              "inputs": [
+                                {
+                                  "indexed": true,
+                                  "name": "from",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "Transfer",
+                              "type": "event"
+                            },
+                            {
+                              "anonymous": false,
+                              "inputs": [
+                                {
+                                  "indexed": true,
+                                  "name": "_Ra",
+                                  "type": "string"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "_Dec",
+                                  "type": "string"
+                                }
+                              ],
+                              "name": "Log",
+                              "type": "event"
+                            },
+                            {
+                              "anonymous": false,
+                              "inputs": [
+                                {
+                                  "indexed": true,
+                                  "name": "_from",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "_tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "CreateStar",
+                              "type": "event"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "approved",
+                                  "type": "bool"
+                                }
+                              ],
+                              "name": "setApprovalForAll",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "anonymous": false,
+                              "inputs": [
+                                {
+                                  "indexed": true,
+                                  "name": "owner",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "approved",
+                                  "type": "address"
+                                },
+                                {
+                                  "indexed": true,
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "Approval",
+                              "type": "event"
+                            },
+                            {
+                              "constant": false,
+                              "inputs": [
+                                {
+                                  "name": "from",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "to",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "transferFrom",
+                              "outputs": [],
+                              "payable": false,
+                              "stateMutability": "nonpayable",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "owner",
+                                  "type": "address"
+                                }
+                              ],
+                              "name": "balanceOf",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "_Ra",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "_Dec",
+                                  "type": "string"
+                                }
+                              ],
+                              "name": "checkIfStarExist",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "bool"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "a",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "b",
+                                  "type": "string"
+                                }
+                              ],
+                              "name": "compareStrings",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "bool"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "getApproved",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "address"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [],
+                              "name": "getCount",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "owner",
+                                  "type": "address"
+                                },
+                                {
+                                  "name": "operator",
+                                  "type": "address"
+                                }
+                              ],
+                              "name": "isApprovedForAll",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "bool"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "ownerOf",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "address"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "_Token_ID",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "StarForSale_Price",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [],
+                              "name": "starsForSale",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "uint256[]"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "interfaceId",
+                                  "type": "bytes4"
+                                }
+                              ],
+                              "name": "supportsInterface",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "bool"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            },
+                            {
+                              "constant": true,
+                              "inputs": [
+                                {
+                                  "name": "_tokenId",
+                                  "type": "uint256"
+                                }
+                              ],
+                              "name": "tokenIdToStarInfo",
+                              "outputs": [
+                                {
+                                  "name": "",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "",
+                                  "type": "string"
+                                }
+                              ],
+                              "payable": false,
+                              "stateMutability": "view",
+                              "type": "function"
+                            }
+]
+            );
+            // Grab the contract at specified deployed address with the interface defined by the ABI
+            var starNotary = StarNotary.at('0x27045ae60b38222337aea3b0ef8cbce7124c2b50');
+            
+            // Get and display star name
+             
+
+
+
+            
+                
+
+            
+
+              const promisify = (inner) =>     // helper function to use promises instead of callback for metamask web3 ,refrence :https://shawntabrizi.com/crypto/making-web3-js-work-asynchronously-javascript-promises-await/ 
+
+             new Promise((resolve, reject) =>
+                 inner((err, res) => {
+                  if (err) {
+                    reject(err);
+                  } else {
+                    resolve(res);
+                   }
+            })
+             );
+
+             
+
+                          
+                          async function starInfo(){
+                
+                
+                try {
+                
+                let accounts=await promisify(cb =>web3.eth.getAccounts(cb));
+                let account=accounts[0];
+                let  tokenid = prompt("Please enter enter a star token id");
+                if (tokenid == null || tokenid == "") {
+                           alert("you did not enter a star token id");
+                             } 
+                             else {
+                               tokenid=parseInt(tokenid);
+                               console.log(tokenid);
+                               let star=await promisify(cb=> starNotary.tokenIdToStarInfo(tokenid,{from: account},cb));
+                               alert("Star info :" + star);
+                           }
+                
+                }
+                catch(e){
+                console.log(e.message);
+                } 
+             }
+             
+             async function listStarsForSale(){ 
+                     try {
+                
+                let accounts=await promisify(cb =>web3.eth.getAccounts(cb));
+                let account=accounts[0];
+                let stars= await  promisify(cb=> starNotary.starsForSale({from: account},cb));
+                 
+                
+                var table = document.getElementById("Stars-for-sale");
+ 
+                     var rowCount = table.rows.length;
+                     for (var i1 = rowCount - 1; i1 > 0; i1--) {
+                       table.deleteRow(i1);
+                          }
+ 
+                     
+                      
+ 
+                     let i;
+                     
+                     for (i = 0; i < stars.length; i++) {
+                      
+                       let tokenid=stars[i].toNumber();
+                       let star=await promisify(cb=> starNotary.tokenIdToStarInfo(tokenid,{from: account},cb));
+                       
+                       let price= await promisify(cb=> starNotary.StarForSale_Price(tokenid,{from: account},cb));
+                       let  owner=await promisify(cb=> starNotary.ownerOf(tokenid,cb));
+                       price=web3.fromWei(price.toNumber(), 'ether')
+                       
+                       // Create an empty <tr> element and add it to the 1st position of the table:
+                       var row = table.insertRow(1);
+ 
+                       // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                       var cell1 = row.insertCell(0);
+                       var cell2 = row.insertCell(1);
+                       var cell3 = row.insertCell(2);
+                       var cell4 = row.insertCell(3);
+                       var cell5 = row.insertCell(4);
+ 
+                       // Add some text to the new cells:
+                       cell1.innerHTML = tokenid;
+                       cell2.innerHTML = star[0];
+                       cell3.innerHTML = star[1];
+                       cell4.innerHTML = price;
+                       cell5.innerHTML = owner;
+                        
+                       //console.log(tokenid);
+                     
+                     
+                     
+                     }
+                
+                
+                
+                }
+                catch(e){
+                console.log(e.message);
+                } 
+             
+             
+             
+              
+ 
+ 
+             }
+ 
+              
+            function CreateButtonClicked() { 
+
+              
+              let tokenid;
+            tokenid=parseInt(new Date().getTime(),10);
+                web3.eth.getAccounts(function(error, accounts) { 
+                    if (error) { 
+                        console.log(error)
+                        return
+                    }
+                    var account = accounts[0]
+
+
+
+                    var starname= document.getElementById("star-name").value ;
+                    var starstory= document.getElementById('star-story').value ;
+                    var ra= document.getElementById('ra').value ;
+                    var dec= document.getElementById('dec').value ;
+                    var mag= document.getElementById('mag').value ;
+
+                    console.log(account);
+
+                    console.log(tokenid,starname,ra,dec,mag,starstory);
+
+                    starNotary.createStar(tokenid,starname,ra,dec,mag,starstory,{from: account,gas:3000000},function(error,result){
+
+                      if (!error){
+
+                        var starCreatedEvent = starNotary.CreateStar();
+                        starCreatedEvent.watch(function(error, result){
+
+                          if (!error){
+                            
+                            document.getElementById('Token-ID').innerText =result.args._tokenId;
+                            
+                            
+                          
+                          }
+                          else{console.log(  error.message);}
+
+
+
+
+                        });
+
+                        
+                      }
+                      
+                      
+                      
+                      else{console.log(  error.message);}
+
+
+
+
+
+
+                    });
+            });
+          }
+
+
+
+          function PutStarForSaleButtonClicked() {               
+          
+          //tokenid=parseInt(new Date().getTime(),10);
+          web3.eth.getAccounts(function(error, accounts) {
+
+             if (error){
+
+              console.log(error)
+              return
+             }
+             var account = accounts[0]          
+
+          let tokenid=document.getElementById('TokenID').value;
+          let price =document.getElementById('price').value;
+
+           price = web3.toWei(price, "ether")
+
+           starNotary.putStarUpForSale(tokenid, price, {from: account,gas:3000000},function(error,result){
+
+              if (!error){
+
+                starNotary.StarForSale_Price(tokenid,function(error,result){
+
+
+                   if (!error){  
+
+                    if (result.toNumber()==price){
+
+                      alert(`you putted your star with token id  ${tokenid} at price ${web3.fromWei(price, 'ether')} for sale`)
+                      listStarsForSale();
+                    }
+                  }
+                  else{console.log(error.message);}
+
+
+                });
+              }
+              else {
+                console.log(  error.message);
+
+
+              }
+
+
+
+           });
+
+
+
+
+
+
+           });
+         
+
+
+         
+    }
+
+    
+          function BuyStarButtonClicked(){
+
+
+
+            web3.eth.getAccounts(function(error, accounts) {
+
+            if (error){
+
+                console.log(error)
+                return
+              }
+            var account = accounts[0]
+
+            let tokenid=document.getElementById('BuyTokenID').value;
+            let cost =document.getElementById('cost').value;
+            cost=web3.toWei(cost, "ether")
+
+            starNotary.buyStar(tokenid,  {from: web3.eth.defaultAccount,value:cost,gas:3000000},function(error,result){
+
+              if (!error){
+
+              starNotary.StarForSale_Price(tokenid,function(error,result){
+
+
+                  if (!error){  
+
+                  if (result.toNumber()==0){
+
+                alert(`Congratulations you bought  star  ${tokenid} at cost ${web3.fromWei(cost, 'ether')} !`)
+                listStarsForSale();
+      }
+    }
+    else{console.log(error.message);}
+
+
+  });
+}
+else {
+  console.log(  error.message);
+
+
+}
+
+});
+
+});
+
+
+
+          }
+    
+    window.onload=listStarsForSale();
+
+
+
+          
+
+            </script>
+             
+ 
+
+         
+        
+    </body>
+</html>
