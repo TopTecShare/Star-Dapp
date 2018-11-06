@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Star Notary</title>
-        <script src="/js/jquery-1.9.1.js"></script>
+        <script src="Scripts/jquery-1.9.1.js"></script>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="/js/bootstrap.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.js"></script>
      
 
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
@@ -104,7 +104,7 @@
                                 </div>
 
                       
-                                <button id="create-button"  class="btn btn-primary pull-right" onclick="CreateButtonClicked()">Create Star</button>
+                                <button id="create-button"  class="btn btn-primary pull-right" onclick="CreateButtonClicked()">Claim Star</button>
                     
                     </div>
 
@@ -196,7 +196,7 @@
                       </table>
                     </div>
 
-                    <button id="star-info-button"  class="btn btn-primary pull-right" onclick="starInfo()"> star info </button>
+                    <button id="star-info-button"  class="btn btn-primary pull-right" onclick="elb()"> star info </button>
                     
   
                 </div>
@@ -253,15 +253,7 @@
 
     
 
-        <script>    
-         
-        // s = s.substr(3);
-         //alert(s);
-
-
-
-
-           
+        <script> 
 
              if(typeof web3 != 'undefined') { 
                 web3 = new Web3(web3.currentProvider) // what Metamask injected 
@@ -787,13 +779,7 @@
             // Grab the contract at specified deployed address with the interface defined by the ABI
             var starNotary = StarNotary.at('0x27045ae60b38222337aea3b0ef8cbce7124c2b50');
             
-            // Get and display star name
-             
-
-
-
-            
-                
+                      
 
             
 
@@ -812,7 +798,7 @@
              
 
                           
-                          async function starInfo(){
+            async function starInfo(){
                 
                 
                 try {
@@ -825,7 +811,6 @@
                              } 
                              else {
                                tokenid=parseInt(tokenid);
-                               console.log(tokenid);
                                let star=await promisify(cb=> starNotary.tokenIdToStarInfo(tokenid,{from: account},cb));
                                alert("Star info :" + star);
                            }
@@ -837,7 +822,7 @@
              }
              
              async function listStarsForSale(){ 
-                     try {
+              try {
                 
                 let accounts=await promisify(cb =>web3.eth.getAccounts(cb));
                 let account=accounts[0];
@@ -849,9 +834,7 @@
                      var rowCount = table.rows.length;
                      for (var i1 = rowCount - 1; i1 > 0; i1--) {
                        table.deleteRow(i1);
-                          }
- 
-                     
+                          }              
                       
  
                      let i;
@@ -882,7 +865,7 @@
                        cell4.innerHTML = price;
                        cell5.innerHTML = owner;
                         
-                       //console.log(tokenid);
+                      
                      
                      
                      
@@ -895,43 +878,31 @@
                 console.log(e.message);
                 } 
              
-             
-             
-              
- 
- 
              }
  
               
-            function CreateButtonClicked() { 
+          function CreateButtonClicked() { 
 
               
-              let tokenid;
+            let tokenid;
             tokenid=parseInt(new Date().getTime(),10);
                 web3.eth.getAccounts(function(error, accounts) { 
                     if (error) { 
                         console.log(error)
                         return
                     }
-                    var account = accounts[0]
+                    const account = accounts[0]
+                    let starname= document.getElementById("star-name").value ;
+                    let starstory= document.getElementById('star-story').value ;
+                    let ra= document.getElementById('ra').value ;
+                    let dec= document.getElementById('dec').value ;
+                    let mag= document.getElementById('mag').value ;
 
-
-
-                    var starname= document.getElementById("star-name").value ;
-                    var starstory= document.getElementById('star-story').value ;
-                    var ra= document.getElementById('ra').value ;
-                    var dec= document.getElementById('dec').value ;
-                    var mag= document.getElementById('mag').value ;
-
-                    console.log(account);
-
-                    console.log(tokenid,starname,ra,dec,mag,starstory);
-
-                    starNotary.createStar(tokenid,starname,ra,dec,mag,starstory,{from: account,gas:3000000},function(error,result){
+                                       starNotary.createStar(tokenid,starname,ra,dec,mag,starstory,{from: account,gas:3000000},function(error,result){
 
                       if (!error){
 
-                        var starCreatedEvent = starNotary.CreateStar();
+                        let starCreatedEvent = starNotary.CreateStar();
                         starCreatedEvent.watch(function(error, result){
 
                           if (!error){
