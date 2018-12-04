@@ -5,7 +5,7 @@
    - Expressjs   (to run client interface "index.html")
    - openzeppelin-solidity 
    - truflle (for local testing and deployment )
-   -
+   
 ## Install command
   to install prerequisites   run  `npm install`	
 ## Start command
