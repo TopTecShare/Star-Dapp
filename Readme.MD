@@ -1,14 +1,15 @@
-# Real Estate ERC721Token with Zokrates  verification integration
-	This is a udacity capsone graduation project 
+                                                                                      # Star-Notary-Service Dapp
+	This is a simple project to implment star notary on etheruem  rinkeby test network using ERC721 token standrad 
 
- 
+## Prerequisites Packages
+   - Expressjs   (to run client interface "index.html")
+   - openzeppelin-solidity 
+   - truflle (for local testing and deployment )
    
 ## Install command
   to install prerequisites   run  `npm install`	
-## smart contracts 
-  `cd eth-contracts/`  
-### compile smart contracts
-   `truffle compile` 
+## Start command
+  to start the application run   `node server.js`
 ## server.js
    this is the starting script to start the server at defined port ,in this project port is 8080
 
