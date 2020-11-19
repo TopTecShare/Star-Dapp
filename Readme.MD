@@ -1,5 +1,5 @@
-                                                                                      # Star-Notary-Service Dapp
-	This is a simple project to implment star notary on etheruem  rinkeby test network using ERC721 token standrad 
+# Star-Notary-Service Dapp
+This is a simple project to implment star notary on etheruem  rinkeby test network using ERC721 token standrad 
 
 ## Prerequisites Packages
    - Expressjs   (to run client interface "index.html")
